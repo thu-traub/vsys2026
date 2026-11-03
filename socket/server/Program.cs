@@ -12,8 +12,23 @@ while (true) {
 
     NetworkStream ns = new NetworkStream(client);
     StreamReader rd = new StreamReader(ns);
+    StreamWriter wr = new StreamWriter(ns);
 
     string? line = rd.ReadLine();
+    switch (line)
+    {
+        case "hello":
+            System.Console.WriteLine("Client said hello "+line);
+            break;
+        case "time":
+            System.Console.WriteLine("Client asked for time "+line);
+            wr.WriteLine(DateTime.Now);
+            wr.Flush();
+            break;
+        default:
+            System.Console.WriteLine("Unknown message");
+            break;
+    }
     System.Console.WriteLine($"Received message: {line}");
 
     client.Shutdown(SocketShutdown.Both);
