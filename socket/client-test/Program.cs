@@ -2,10 +2,11 @@
 using System.Net.Sockets;
 using System.Threading;
 const int Port = 12345;
-const int N = 10;
+const int N = 50;
 
 Stopwatch sw = Stopwatch.StartNew();
 List<Thread> threads = new List<Thread>();
+int[] reqtime = new int[N];
 for (int i = 0; i < N; i++)
 {
     Int32 iteration = i;
@@ -18,9 +19,12 @@ for (int i = 0; i < N; i++)
         NetworkStream stream = new NetworkStream(socket);
         StreamWriter writer = new StreamWriter(stream);
         StreamReader reader = new StreamReader(stream);
+        Stopwatch reqSw = Stopwatch.StartNew();
         writer.WriteLine("time");
         writer.Flush();
         string? response = reader.ReadLine();
+        reqSw.Stop();
+        reqtime[iteration] = (int)reqSw.ElapsedMilliseconds;
         //System.Console.WriteLine($"Server response: {response}");
         reader.Close();
         writer.Close();
@@ -34,3 +38,4 @@ for (int i = 0; i < N; i++)
 threads.ForEach(t => t.Join());
 sw.Stop();
 System.Console.WriteLine($"Total time: {sw.ElapsedMilliseconds} ms");
+System.Console.WriteLine($"Request times: {string.Join(", ", reqtime)}");

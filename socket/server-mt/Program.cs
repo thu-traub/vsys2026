@@ -27,7 +27,7 @@ void HandleClient(Socket client)
             break;
         case "time":
             //System.Console.WriteLine("Client asked for time "+line);
-            Thread.Sleep(100);
+            Thread.Sleep(500);
             wr.WriteLine(DateTime.Now);
             wr.Flush();
             break;
