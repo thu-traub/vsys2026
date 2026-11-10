@@ -2,19 +2,13 @@
 
 const int Port = 12345;
 
-run();
-Console.ReadLine();
-
-async void run()
-{
-    Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-    socket.Bind(new System.Net.IPEndPoint(System.Net.IPAddress.Any, Port));
-    socket.Listen(100);
-    System.Console.WriteLine($"Server listening on port {Port}");
-    while (true) {
-        Socket client = await socket.AcceptAsync();
-        _ = HandleClient(client);
-    }
+Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+socket.Bind(new System.Net.IPEndPoint(System.Net.IPAddress.Any, Port));
+socket.Listen(100);
+System.Console.WriteLine($"Server listening on port {Port}");
+while (true) {
+    Socket client = socket.Accept();
+    _ = HandleClient(client);
 }
 
 async Task HandleClient(Socket client)
