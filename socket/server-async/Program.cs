@@ -2,18 +2,18 @@
 
 const int Port = 12345;
 
-await run();
+run();
+Console.ReadLine();
 
-async Task run()
+async void run()
 {
     Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
     socket.Bind(new System.Net.IPEndPoint(System.Net.IPAddress.Any, Port));
     socket.Listen(100);
     System.Console.WriteLine($"Server listening on port {Port}");
     while (true) {
-        Socket client = socket.Accept();
-        System.Console.WriteLine("Client connected");
-        await HandleClient(client);
+        Socket client = await socket.AcceptAsync();
+        _ = HandleClient(client);
     }
 }
 
@@ -30,10 +30,11 @@ async Task HandleClient(Socket client)
             System.Console.WriteLine("Client said hello "+line);
             break;
         case "time":
-            System.Console.WriteLine("Client asked for time "+line);
+            //System.Console.WriteLine("Client asked for time "+line);
             await Task.Delay(1000);
             await wr.WriteLineAsync(DateTime.Now.ToString());
             await wr.FlushAsync();
+            //System.Console.WriteLine("Sent current time to client");
             break;
         default:
             System.Console.WriteLine("Unknown message");
