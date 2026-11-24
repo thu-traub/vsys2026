@@ -10,14 +10,16 @@
             <h1>Demo HTML</h1>
             <div>
                 <ul>
-                    <xsl:for-each select="person">
-                        <li>
-                            <xsl:value-of select="name"/>
-                        </li>
-                    </xsl:for-each>
+                    <xsl:apply-templates select="person"/>
                 </ul>
             </div>
         </body>
       </html>
+    </xsl:template>
+
+    <xsl:template match="person">
+        <li>
+            <xsl:value-of select="name"/>
+        </li>
     </xsl:template>
 </xsl:stylesheet>
