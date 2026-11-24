@@ -1,0 +1,11 @@
+{
+  "$schema": "./schema.json",
+  "data": {
+      "person": [
+          {"name": "Hans", "age": 1200},
+          {"name": "Petra", "age": 14},
+          {"name": "John", "age": 10},
+          {"name": "Alice", "age": 30}
+      ]
+  }
+}   
