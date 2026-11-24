@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data xmlns:c="hello">
+  <person>
+    <name>Petra</name>
+    <age>24</age>
+    <c:company>
+      <c:name>Müller GmbH</c:name>
+      <c:location>Berlin</c:location>
+    </c:company>
+  </person>
+  <person>
+    <name>Hans</name>
+    <age>12</age>
+  </person>
+</data>

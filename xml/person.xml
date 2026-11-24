@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="person.xsd">
+  <person>
+    <name>Petra</name>
+    <age>24</age>
+  </person>
+  <person>
+    <name>Anton</name>
+    <age>12</age>
+  </person>
+  <person>
+    <name>Demo</name>
+    <age>90</age>
+  </person>
+</data>
